@@ -43,6 +43,8 @@ int     main(int argc,char *argv[])
 	strlcat(cmd, " ", CMD_MAX);
     }
     argv[0] = "su";
+    printf("%s ", user);
+    fflush(stdout);
     execlp("su", "-m", user, "-c", cmd, NULL);
     return EX_OK;
 }
