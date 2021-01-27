@@ -1,0 +1,3 @@
+runas.o: runas.c
+	${CC} -c ${CFLAGS} runas.c
+
