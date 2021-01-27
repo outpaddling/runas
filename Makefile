@@ -60,6 +60,7 @@ LOCALBASE   ?= /usr/local
 
 # Install in /usr/local, unless defined by the parent Makefile, the
 # environment, or a command line option such as PREFIX=/opt/local.
+DESTDIR     ?= .
 PREFIX      ?= ${LOCALBASE}
 MANPREFIX   ?= ${PREFIX}
 
@@ -85,6 +86,7 @@ CPP         ?= cpp
 
 PRINTF  ?= printf
 INSTALL ?= install
+MKDIR   ?= mkdir
 
 ############################################################################
 # Standard targets required by package managers
