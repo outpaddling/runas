@@ -16,8 +16,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-
-#define CMD_MAX     1024
+#include <limits.h>
 
 void    usage(char *argv[])
 
@@ -29,7 +28,7 @@ void    usage(char *argv[])
 int     main(int argc,char *argv[])
 
 {
-    char    cmd[CMD_MAX + 1] = "",
+    char    cmd[ARG_MAX + 1] = "",
 	    *user;
     int     c;
     
@@ -39,8 +38,8 @@ int     main(int argc,char *argv[])
     user = argv[1];
     for (c = 2; c < argc; ++c)
     {
-	strlcat(cmd, argv[c], CMD_MAX);
-	strlcat(cmd, " ", CMD_MAX);
+	strlcat(cmd, argv[c], ARG_MAX);
+	strlcat(cmd, " ", ARG_MAX);
     }
     argv[0] = "su";
     printf("%s ", user);
