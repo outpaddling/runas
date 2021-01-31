@@ -44,6 +44,6 @@ int     main(int argc,char *argv[])
     argv[0] = "su";
     printf("%s ", user);
     fflush(stdout);
-    execlp("su", "-m", user, "-c", cmd, NULL);
+    execlp("su", "l", "-m", user, "-c", cmd, NULL);
     return EX_OK;
 }
