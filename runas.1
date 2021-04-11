@@ -1,0 +1,98 @@
+.TH RUNAS 1
+.SH NAME    \" Section header
+.PP
+ 
+RUNAS \- Run commands as another user
+
+.SH SYNOPSIS
+.PP
+.nf 
+.na 
+runas username command [arguments]
+.ad
+.fi
+
+.SH "PURPOSE"
+
+.B runas
+is a simple wrapper around
+.B su
+to add convenience for running commands as another user.
+
+The primary goal is to make
+.B su
+convenient enough to serve as a substitute for
+.B sudo.
+Several serious security bugs have been discovered in
+.B sudo
+including one that persisted for about a decade before being publicized.
+In addition, configuring multiple
+.B sudo
+users increases the odds for hackers cracking a password that give them root
+access.
+
+.SH "DESCRIPTION"
+
+The
+.B su
+command is commonly used to run a shell session as another user.  However,
+if we only intend to run a single command as that user, it is better for
+security if we do not start a shell, which we might forget to close.
+This is the primary argument for using
+.B sudo
+instead of
+.B su.
+We actually can use
+.B su
+to run a single command, but it is a bit cumbersome as it requires
+additional flags and quotes around commands with any arguments, e.g.
+
+.nf
+.na
+su -m root -c 'command -flag arg1 arg2'
+.ad
+.fi
+
+The
+.B runas
+command simply eliminates the annoying cruft:
+
+.nf
+.na
+runas root command -flag arg1 arg2
+.ad
+.fi
+
+The
+.B runas
+command differs from
+.B sudo in the following ways:
+
+o It requires the target user's password rather than the password of the
+invoking user.  This means that there is only one password to allow root
+access and helps prevent that password from being forgotten.  Users of
+.B sudo
+often don't know the root password, which can become a problem if it is
+misplaced and needed for some reason (such as a
+.B sudo
+user's account becoming inaccessible).
+
+o It does not require any configuration on the system.  To run a command as
+another user, one must simply know the password (unless invoking
+.B runas
+as root, of course).
+
+o It does not cache passwords: Every invocation requires the target user's
+password.
+
+.SH "SEE ALSO"
+su, sudo
+
+.SH BUGS
+Please report bugs to the author and send patches in unified diff format.
+(man diff for more information)
+
+.SH AUTHOR
+.nf
+.na
+J. Bacon
