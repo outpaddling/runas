@@ -41,9 +41,13 @@ int     main(int argc,char *argv[])
 	strlcat(cmd, argv[c], ARG_MAX);
 	strlcat(cmd, " ", ARG_MAX);
     }
+    /* Indicate which user's password must be entered */
+    if ( geteuid() != 0 )
+    {
+	printf("%s ", user);
+	fflush(stdout);
+    }
     argv[0] = "su";
-    printf("%s ", user);
-    fflush(stdout);
     execlp("su", "l", "-m", user, "-c", cmd, NULL);
     return EX_OK;
 }
