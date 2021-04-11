@@ -28,7 +28,7 @@ Several serious security bugs have been discovered in
 including one that persisted for about a decade before being publicized.
 In addition, configuring multiple
 .B sudo
-users increases the odds for hackers cracking a password that give them root
+users increases the odds for hackers cracking a password that gives them root
 access.
 
 .SH "DESCRIPTION"
@@ -45,7 +45,7 @@ instead of
 We actually can use
 .B su
 to run a single command, but it is a bit cumbersome as it requires
-additional flags and quotes around commands with any arguments, e.g.
+additional flags as well as quotes around commands with any arguments, e.g.
 
 .nf
 .na
@@ -66,7 +66,8 @@ runas root command -flag arg1 arg2
 The
 .B runas
 command differs from
-.B sudo in the following ways:
+.B sudo
+in the following ways:
 
 o It requires the target user's password rather than the password of the
 invoking user.  This means that there is only one password to allow root
@@ -77,7 +78,7 @@ misplaced and needed for some reason (such as a
 .B sudo
 user's account becoming inaccessible).
 
-o It does not require any configuration on the system.  To run a command as
+o It does not require any system configuration.  To run a command as
 another user, one must simply know the password (unless invoking
 .B runas
 as root, of course).
