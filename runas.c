@@ -48,6 +48,6 @@ int     main(int argc,char *argv[])
 	fflush(stdout);
     }
     argv[0] = "su";
-    execlp("su", "l", "-m", user, "-c", cmd, NULL);
+    execlp("su", "-l", "-m", user, "-c", cmd, NULL);
     return EX_OK;
 }
