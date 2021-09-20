@@ -4,7 +4,7 @@
  *      Simple wrapper around su, which is cumbersome for running
  *      single commands, requiring quotes around the command, e.g.
  *
- *      su -m root -c 'command with arguments'
+ *      su -l root -c 'command with arguments'
  *
  *  History: 
  *  Date        Name        Modification
@@ -48,6 +48,6 @@ int     main(int argc,char *argv[])
 	fflush(stdout);
     }
     argv[0] = "su";
-    execlp("su", "-l", "-m", user, "-c", cmd, NULL);
+    execlp("su", "-l", user, "-c", cmd, NULL);
     return EX_OK;
 }
