@@ -35,6 +35,9 @@ int     main(int argc,char *argv[])
     if ( argc < 3 )
 	usage(argv);
 
+    // FIXME: Warn if executable is not owned by root or is writable
+    // by non-root users
+    
     user = argv[1];
     for (c = 2; c < argc; ++c)
     {
