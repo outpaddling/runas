@@ -18,12 +18,37 @@
 #include <unistd.h>
 #include <limits.h>
 
+#ifdef __linux__
+#define ARG_MAX	2097152	// getconf ARG_MAX CentOS 7
+#endif
+
+// Remove usage() from libbacon?
 void    usage(char *argv[])
 
 {
     fprintf(stderr, "Usage: %s username command\n", argv[0]);
     exit(EX_USAGE);
 }
+
+#ifdef __linux__
+size_t  strlcat(char *dest,const char *src,size_t maxlen)
+
+{
+    char    *dp,*sp;
+    
+    /* Find end of first string */
+    for (dp=dest; (*dp != '\0') && --maxlen; ++dp)
+	;
+    
+    /* Concetanate second string */
+    for (sp=(char *)src; (*sp != '\0') && --maxlen; )
+	*dp++ = *sp++;
+    
+    /* Null terminate */
+    *dp = '\0';
+    return dp-dest;
+}
+#endif
 
 int     main(int argc,char *argv[])
 
