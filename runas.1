@@ -9,6 +9,7 @@ RUNAS \- Run commands as another user
 .nf 
 .na 
 runas username command [arguments]
+asroot command [arguments]
 .ad
 .fi
 
@@ -18,6 +19,10 @@ runas username command [arguments]
 is a simple wrapper around
 .B su
 to add convenience for running commands as another user.
+
+.B asroot command
+is equivalent to
+.B runas root command.
 
 The primary goal is to make
 .B su

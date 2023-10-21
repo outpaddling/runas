@@ -137,6 +137,7 @@ install: all
 	${INSTALL} -s -m 0755 ${BIN} ${DESTDIR}${PREFIX}/bin
 	${INSTALL} -s -m 0755 ${BIN} ${DESTDIR}${PREFIX}/bin/asroot
 	${INSTALL} -m 0644 ${MAN} ${DESTDIR}${MANPREFIX}/man/man1
+	${INSTALL} -m 0644 ${MAN} ${DESTDIR}${MANPREFIX}/man/man1/asroot.1
 
 help:
 	@printf "Usage: make [VARIABLE=value ...] all\n\n"
