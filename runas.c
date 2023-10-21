@@ -19,7 +19,7 @@
 #include <limits.h>
 
 #ifdef __linux__
-#define ARG_MAX	2097152	// getconf ARG_MAX CentOS 7
+#define ARG_MAX 2097152 // getconf ARG_MAX CentOS 7
 #endif
 
 // Remove usage() from libbacon?
@@ -55,16 +55,30 @@ int     main(int argc,char *argv[])
 {
     char    cmd[ARG_MAX + 1] = "",
 	    *user;
-    int     c;
+    int     c,
+	    min_args,
+	    first_arg;
+
+    if ( strcmp(argv[0], "asroot") == 0 )
+    {
+	min_args = 2;
+	first_arg = 1;
+	user = "root";
+    }
+    else
+    {
+	min_args = 3;
+	first_arg = 2;
+	user = argv[1];
+    }
     
-    if ( argc < 3 )
+    if ( argc < min_args )
 	usage(argv);
 
     // FIXME: Warn if executable is not owned by root or is writable
     // by non-root users
     
-    user = argv[1];
-    for (c = 2; c < argc; ++c)
+    for (c = first_arg; c < argc; ++c)
     {
 	strlcat(cmd, argv[c], ARG_MAX);
 	strlcat(cmd, " ", ARG_MAX);
