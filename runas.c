@@ -90,6 +90,6 @@ int     main(int argc,char *argv[])
 	fflush(stdout);
     }
     argv[0] = "su";
-    execlp("su", "-l", user, "-c", cmd, NULL);
+    execlp("su", "su", "-l", user, "-c", cmd, NULL);
     return EX_OK;
 }
