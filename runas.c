@@ -26,7 +26,10 @@
 void    usage(char *argv[])
 
 {
-    fprintf(stderr, "Usage: %s username command\n", argv[0]);
+    if ( strstr(argv[0], "asroot") != NULL )
+	fprintf(stderr, "Usage: %s command\n", argv[0]);
+    else
+	fprintf(stderr, "Usage: %s username command\n", argv[0]);
     exit(EX_USAGE);
 }
 
