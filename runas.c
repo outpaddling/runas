@@ -68,7 +68,7 @@ int     main(int argc,char *argv[])
 	    min_args,
 	    first_arg;
 
-    if ( strcmp(argv[0], "asroot") == 0 )
+    if ( strstr(argv[0], "asroot") != NULL )
     {
 	min_args = 2;
 	first_arg = 1;
