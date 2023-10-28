@@ -33,6 +33,12 @@ void    usage(char *argv[])
     exit(EX_USAGE);
 }
 
+#ifdef __sun
+#define LOGIN_ENV   "-"
+#else
+#define LOGIN_ENV   "-l"
+#endif
+
 #ifdef __linux__
 size_t  strlcat(char *dest,const char *src,size_t maxlen)
 
@@ -93,6 +99,6 @@ int     main(int argc,char *argv[])
 	fflush(stdout);
     }
     argv[0] = "su";
-    execlp("su", "su", "-l", user, "-c", cmd, NULL);
+    execlp("su", "su", LOGIN_ENV, user, "-c", cmd, NULL);
     return EX_OK;
 }
