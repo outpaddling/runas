@@ -107,7 +107,9 @@ int     main(int argc,char *argv[])
     exec_argv[0] = SU;
     
     // FIXME: Warn if executable is not owned by root or is writable
-    // by non-root users
+    // by non-root users.  Shouldn't be a problem if properly installed
+    // via a package manager, but do everything possible for security,
+    // since users may be entering the root password.
     
     // Add su flags
     for (c = first_arg, exec_argc = 1; *argv[c] == '-'; ++c, ++exec_argc)
@@ -153,6 +155,6 @@ int     main(int argc,char *argv[])
 	printf("%s ", user);
 	fflush(stdout);
     }
-    execvp(SU, exec_argv);
+    execv(SU, exec_argv);
     return EX_OK;
 }
