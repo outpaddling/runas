@@ -43,7 +43,7 @@ The
 command is commonly used to run a shell session as another user.  However,
 if we only intend to run a single command as that user, it is better for
 security if we do not start a shell, which we might forget to close.
-This is the primary argument for using
+This is a common argument for using
 .B sudo
 instead of
 .B su.
@@ -84,9 +84,12 @@ is misplaced and needed for some reason (such as a
 user's account becoming inaccessible).
 
 o It does not require any system configuration.  To run a command as
-another user, one must simply know the password (unless invoking
+another user, one must simply know the target user's password
+(unless invoking
 .B runas
-as root, of course).
+as root, of course, as root can su to any user without entering a password).
+
+o It does not require SUID permissions.
 
 o It does not cache passwords: Every invocation requires the target user's
 password.
